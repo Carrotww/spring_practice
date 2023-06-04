@@ -29,6 +29,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	// postgreSQL
 	implementation 'org.postgresql:postgresql'
+	// JTS(Java Topology Suite) 공간 데이터를 jackson 라이브러리를 이용해 json으로 변환 시키기 위함
+	// implementation 'com.bedatadriven:jackson-datatype-jts:2.4'
+	implementation 'org.n52.jackson:jackson-datatype-jts:1.2.10'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
