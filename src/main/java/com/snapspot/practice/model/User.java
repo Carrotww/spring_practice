@@ -1,7 +1,7 @@
 package com.snapspot.practice.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Type;
+import org.locationtech.jts.geom.Point;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +22,6 @@ public class User {
     @Column(nullable = false)
     private String birth;
 
-    @Type(type="org.locationtech.jts.geom.Point")
+    @Column(columnDefinition = "geometry(Point, 4326)", nullable = true)
     private Point user_location;
-
 }

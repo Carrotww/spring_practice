@@ -29,9 +29,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	// postgreSQL
 	implementation 'org.postgresql:postgresql'
+
 	// JTS(Java Topology Suite) 공간 데이터를 jackson 라이브러리를 이용해 json으로 변환 시키기 위함
+	// 아래 두개의 차이 찾아보기 org.n52가 더 안정적이라고 함 이유 찾기
 	// implementation 'com.bedatadriven:jackson-datatype-jts:2.4'
 	implementation 'org.n52.jackson:jackson-datatype-jts:1.2.10'
+
+	// JTS core library, 공간 데이터 연산을 위한 클래스와 메서드 제공
+	implementation 'org.locationtech.jts:jts-core:1.16.1'
+	// spatial은 hibernate의 extension 같은 느낌으로 공간 데이터 타입 지원을 위한 라이브러리
+	// 어이없음 6.2.2Final 말고 다른 버전으로 하면 안되던게 버전 맞추니까 잘됨 이유 찾을 수 있을까..?
+	implementation 'org.hibernate:hibernate-spatial:6.2.2.Final'
+
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
