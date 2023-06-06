@@ -1,11 +1,11 @@
 package com.snapspot.practice.model;
-
 import jakarta.persistence.*;
-import org.locationtech.jts.geom.Point;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,12 +16,26 @@ public class User {
     @Column(nullable = false, unique = true)
     private String nickname;
 
-    @Column(nullable = false, unique = true)
-    private String phoneNumber;
+    @Column(nullable = false)
+    private String password;
 
     @Column(nullable = false)
-    private String birth;
+    private String userProfile;
 
-    @Column(columnDefinition = "geometry(Point, 4326)", nullable = true)
-    private Point user_location;
+    @ManyToMany
+    @JoinTable(
+        name = "user_chatroom",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "chatroom_id"))
+    private Set<Chatroom> chatrooms;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "User_Group", 
+        joinColumns = { @JoinColumn(name = "user_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "group_id") }
+    )
+    private Set<Group> groups = new HashSet<>();
+
+    // getters and setters
 }
