@@ -5,21 +5,21 @@ import org.locationtech.jts.geom.Point;
 import java.util.Set;
 
 @Entity
-@Table(name = "posts")
+@Table(name = "post")
 public class Post extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
-    @JoinTable(
-        name = "user_post",
-        joinColumns = @JoinColumn(name = "post_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users;
+    @ManyToOne
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private Set<Comment> comments;
 
     @Column(nullable = false)
-    private String s3;
+    private Set<String> s3;
 
     @Column(columnDefinition = "geometry(Point, 4326)")
     private Point position;
@@ -28,7 +28,7 @@ public class Post extends BaseModel {
     private Boolean openScope;
 
     @Column(nullable = false, columnDefinition = "int default 0")
-    private Integer like;
+    private Integer like_count;
 
     @Column(nullable = false)
     private Boolean remind;

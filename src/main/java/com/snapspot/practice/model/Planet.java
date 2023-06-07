@@ -3,31 +3,33 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "planets")
+@Table(name = "planet")
 public class Planet extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "white")
+    @Column(nullable = false)
     private String color;
-
-    @Column(nullable = false, columnDefinition = "circle")
+    
+    @Column(nullable = false)
     private String shape;
 
     @ManyToMany
     @JoinTable(
-        name = "planet_user",
+        name = "planet_member",
         joinColumns = @JoinColumn(name = "planet_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users;
+        inverseJoinColumns = @JoinColumn(name = "member_id")
+    )
+    private Set<Member> members;
 
     @ManyToMany
     @JoinTable(
-        name = "planet_group",
+        name = "planet_crew",
         joinColumns = @JoinColumn(name = "planet_id"),
-        inverseJoinColumns = @JoinColumn(name = "group_id"))
-    private Set<Group> groups;
+        inverseJoinColumns = @JoinColumn(name = "crew_id")
+    )
+    private Set<Crew> crews;
 
     // getters and setters
 }

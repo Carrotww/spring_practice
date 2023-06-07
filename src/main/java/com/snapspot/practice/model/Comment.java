@@ -3,15 +3,15 @@ package com.snapspot.practice.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "comments")
+@Table(name = "comment")
 public class Comment extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
-    private User user;
+    @JoinColumn(name="member_id", nullable=false)
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name="post_id", nullable=false)
