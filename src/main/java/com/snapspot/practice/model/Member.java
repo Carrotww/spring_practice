@@ -1,5 +1,7 @@
 package com.snapspot.practice.model;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,18 +25,18 @@ public class Member extends BaseModel {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Column(nullable = true)
-    private Set<Post> posts;
+    private Set<Post> posts = new HashSet<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Column(nullable = true)
-    private Set<Message> messages;
+    private Set<Message> messages = new HashSet<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Column(nullable = true)
-    private Set<Comment> comments;
+    private Set<Comment> comments = new HashSet<>();
 
     @ManyToMany(mappedBy = "members")
-    private Set<Chatroom> chatrooms;
+    private Set<Chatroom> chatrooms = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
