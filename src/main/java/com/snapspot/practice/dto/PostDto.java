@@ -1,7 +1,10 @@
 package com.snapspot.practice.dto;
 import java.util.Set;
 import org.locationtech.jts.geom.Point;
+// lombok의 Data 어노테이션을 사용하면 getter, setter, toString, equals, hashCode 등을 자동으로 생성해준다
+import lombok.Data;
 
+@Data
 public class PostDto {
     private Long id;
     private Long memberId;
@@ -12,59 +15,4 @@ public class PostDto {
     private Boolean remind;
     private String content;
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
-
-    public Set<String> getS3() {
-        return s3;
-    }
-    public void setS3(Set<String> s3) {
-        this.s3 = s3;
-    }
-
-    public Point getPosition() {
-        return position;
-    }
-    public void setPosition(Point position) {
-        this.position = position;
-    }
-
-    public Boolean getOpenScope() {
-        return openScope;
-    }
-    public void setOpenScope(Boolean openScope) {
-        this.openScope = openScope;
-    }
-
-    public Integer getLikeCount() {
-        return likeCount;
-    }
-    public void setLikeCount(Integer likeCount) {
-        this.likeCount = likeCount;
-    }
-
-    public Boolean getRemind() {
-        return remind;
-    }
-    public void setRemind(Boolean remind) {
-        this.remind = remind;
-    }
-
-    public String getContent() {
-        return content;
-    }
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
