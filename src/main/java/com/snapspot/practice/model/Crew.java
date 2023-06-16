@@ -20,4 +20,11 @@ public class Crew extends BaseModel {
     private Set<Planet> planets;
 
     // getters and setters
+    public String setCrewName(String crew_name) {
+        return this.crew_name = crew_name;
+    }
+
+    public Set<Member> setMembers(Set<Member> members) {
+        return this.members = members;
+    }
 }
