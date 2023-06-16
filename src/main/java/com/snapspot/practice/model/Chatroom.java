@@ -29,5 +29,17 @@ public class Chatroom extends BaseModel {
     @JoinColumn(name = "crew_id", referencedColumnName = "id")
     private Crew crew;
 
+    public String setChatroomName(String chatroom_name) {
+        return this.chatroom_name = chatroom_name;
+    }
+
+    public Set<Member> setMembers(Set<Member> members) {
+        return this.members = members;
+    }
+
+    public Crew setCrew(Crew crew) {
+        return this.crew = crew;
+    }
+
     // getters and setters
 }
