@@ -19,7 +19,14 @@ public class Crew extends BaseModel {
     @ManyToMany(mappedBy = "crews")
     private Set<Planet> planets;
 
-    // getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public String getCrewName() {
+        return crew_name;
+    }
+
     public String setCrewName(String crew_name) {
         return this.crew_name = crew_name;
     }

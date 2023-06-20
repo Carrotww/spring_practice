@@ -1,13 +1,11 @@
 package com.snapspot.practice.service;
 
-import com.snapspot.practice.dto.CrewDto;
+import com.snapspot.practice.dto.CrewRequestDto;
+import com.snapspot.practice.dto.CrewResponseDto;
 import com.snapspot.practice.model.Crew;
 import com.snapspot.practice.model.Member;
-import com.snapspot.practice.model.Chatroom;
-import com.snapspot.practice.repository.ChatroomRepository;
 import com.snapspot.practice.repository.CrewRepository;
 import com.snapspot.practice.repository.MemberRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,26 +22,25 @@ public class CrewService {
     @Autowired
     private MemberRepository memberRepository;
 
-    @Autowired
-    private ChatroomRepository chatroomRepository;
-
-    public Crew createCrew(CrewDto request) {
+    public CrewResponseDto createCrew(CrewRequestDto request) {
         Crew crew = new Crew();
         crew.setCrewName(request.getCrewName());
 
         List<Member> memberList = memberRepository.findAllById(request.getMemberIds());
         Set<Member> members = new HashSet<>(memberList);
         crew.setMembers(members);
-
+        
         Crew savedCrew = crewRepository.save(crew);
+        
+        return convertToDto(savedCrew);
+    }
 
-        Chatroom chatroom = new Chatroom();
-        chatroom.setChatroomName(request.getCrewName() + "의 채팅방");
-        chatroom.setCrew(savedCrew);
-        chatroom.setMembers(members);
-
-        chatroomRepository.save(chatroom);
-
-        return savedCrew;
+    private CrewResponseDto convertToDto(Crew crew) {
+        CrewResponseDto dto = new CrewResponseDto();
+        dto.setId(crew.getId());
+        dto.setCrewName(crew.getCrewName());
+        // Convert members to a set of names or IDs or whatever you prefer
+        // Set the members field in dto
+        return dto;
     }
 }
